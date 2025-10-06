@@ -168,14 +168,19 @@ function getPerspective(characterName) {
   return SpacePerspectives.find(p => p.character.includes(characterName));
 }
 
-// Load and display a new perspective
+// Load and display a new perspective (for the card in main app)
 function loadNewPerspective() {
   const perspective = getRandomPerspective();
   
-  document.getElementById('perspectiveEmoji').textContent = perspective.emoji;
-  document.getElementById('perspectiveCharacter').textContent = perspective.character;
-  document.getElementById('perspectiveTitle').textContent = perspective.title;
-  document.getElementById('perspectiveStory').textContent = perspective.story;
+  const emojiEl = document.getElementById('perspectiveEmoji');
+  const charEl = document.getElementById('perspectiveCharacter');
+  const titleEl = document.getElementById('perspectiveTitle');
+  const storyEl = document.getElementById('perspectiveStory');
+  
+  if (emojiEl) emojiEl.textContent = perspective.emoji;
+  if (charEl) charEl.textContent = perspective.character;
+  if (titleEl) titleEl.textContent = perspective.title;
+  if (storyEl) storyEl.textContent = perspective.story;
   
   console.log('📖 Loaded perspective:', perspective.character);
 }

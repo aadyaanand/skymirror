@@ -17,8 +17,95 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        #onboardingScreen {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: white;
+          z-index: 10000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+          overflow-y: auto;
+        }
+        
+        #onboardingContent {
+          width: 100%;
+          max-width: 900px;
+        }
+        
+        .onboarding-btn {
+          padding: 1.25rem 2.5rem;
+          background: black;
+          color: white;
+          border: 2px solid black;
+          border-radius: 12px;
+          font-size: 1.2rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin: 0.5rem;
+        }
+        
+        .onboarding-btn:hover {
+          background: white;
+          color: black;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .onboarding-btn-skip {
+          padding: 0.75rem 1.5rem;
+          background: white;
+          color: black;
+          border: 1px solid rgba(0,0,0,0.2);
+          border-radius: 8px;
+          font-size: 0.95rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin: 0.5rem;
+          opacity: 0.6;
+        }
+        
+        .onboarding-btn-skip:hover {
+          opacity: 1;
+          border-color: black;
+        }
+        
+        .feature-preview {
+          padding: 1.5rem;
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+        
+        .feature-preview:hover {
+          background: rgba(163, 196, 243, 0.05);
+          transform: translateY(-4px);
+        }
+        
+        #mainApp {
+          display: none;
+        }
+    </style>
 </head>
 <body>
+    <!-- Onboarding Screen -->
+    <div id="onboardingScreen">
+        <div id="onboardingContent"></div>
+    </div>
+
+    <!-- Main App (Hidden Until Onboarding Complete) -->
+    <div id="mainApp">
     <!-- Header -->
     <header class="header">
         <div class="logo">
@@ -30,6 +117,7 @@
             <button class="icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">⚙️</button>
             <button class="icon-btn" id="ritualBtn" aria-label="Daily Ritual" title="Daily Ritual">🕊️</button>
             <button class="icon-btn" id="notesBtn" aria-label="Notes" title="View Reflections">📜</button>
+            <button class="icon-btn" onclick="localStorage.removeItem('skyMirrorOnboarding'); location.reload();" aria-label="Restart Tutorial" title="Restart Tutorial">📖</button>
             <a href="/game.html" class="icon-btn" title="Aurora Catcher Game">🎮</a>
         </div>
     </header>
@@ -242,6 +330,11 @@
                     <span>Show daily ritual prompt</span>
                 </label>
             </div>
+            <div style="margin-top: 1.5rem;">
+                <button class="btn" onclick="localStorage.removeItem('skyMirrorOnboarding'); location.reload();" style="width: 100%;">
+                    📖 Restart Welcome Tutorial
+                </button>
+            </div>
         </div>
     </div>
 
@@ -273,6 +366,9 @@
         </div>
     </div>
 
+    </div>
+    <!-- End Main App -->
+
     <!-- Scripts -->
     <script src="/js/weather.js"></script>
     <script src="/js/aurora.js"></script>
@@ -281,6 +377,26 @@
     <script src="/js/icons.js"></script>
     <script src="/js/stars.js"></script>
     <script src="/js/perspectives.js"></script>
+    <script src="/js/onboarding.js"></script>
     <script src="/js/app.js"></script>
+    
+    <!-- Start onboarding or main app -->
+    <script>
+      // Wrap the main app initialization
+      window.skyMirrorInit = function() {
+        if (!window.skyMirror) {
+          window.skyMirror = new SkyMirror();
+        }
+      };
+      
+      // Start onboarding flow
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          window.initOnboarding();
+        });
+      } else {
+        window.initOnboarding();
+      }
+    </script>
 </body>
 </html>

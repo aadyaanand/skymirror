@@ -611,14 +611,5 @@ class SkyMirror {
   }
 }
 
-// Initialize app when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    window.skyMirror = new SkyMirror();
-  });
-} else {
-  window.skyMirror = new SkyMirror();
-}
-
-// Export for window
+// Export for window (initialization now handled by onboarding.js)
 window.SkyMirror = SkyMirror;

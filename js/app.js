@@ -103,10 +103,6 @@ class SkyMirror {
       this.openRitualModal();
     });
     
-    document.getElementById('ritualBanner').addEventListener('click', () => {
-      this.openRitualModal();
-    });
-    
     document.getElementById('cancelRitual').addEventListener('click', () => {
       document.getElementById('ritualModal').classList.remove('active');
     });
@@ -298,28 +294,35 @@ class SkyMirror {
     
     // Update icon
     const iconContainer = document.getElementById('sunMoonIcon');
-    if (isDaytime) {
-      iconContainer.innerHTML = window.Icons.sun;
-    } else {
-      iconContainer.innerHTML = `
-        <svg viewBox="0 0 48 48">
-          <circle cx="26" cy="24" r="12" fill="none" stroke="#000" stroke-width="1.5"/>
-          <circle cx="32" cy="24" r="12" fill="#fff" stroke="none"/>
-          <circle cx="26" cy="24" r="12" fill="none" stroke="#000" stroke-width="1.5"/>
-        </svg>
-      `;
+    if (iconContainer) {
+      if (isDaytime) {
+        iconContainer.innerHTML = `
+          <svg viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="12" fill="none" stroke="#000" stroke-width="2"/>
+            <line x1="24" y1="4" x2="24" y2="8" stroke="#000" stroke-width="1.5"/>
+            <line x1="24" y1="40" x2="24" y2="44" stroke="#000" stroke-width="1.5"/>
+            <line x1="4" y1="24" x2="8" y2="24" stroke="#000" stroke-width="1.5"/>
+            <line x1="40" y1="24" x2="44" y2="24" stroke="#000" stroke-width="1.5"/>
+          </svg>
+        `;
+      } else {
+        iconContainer.innerHTML = `
+          <svg viewBox="0 0 48 48">
+            <circle cx="26" cy="24" r="12" fill="none" stroke="#000" stroke-width="1.5"/>
+            <circle cx="32" cy="24" r="12" fill="#fff" stroke="none"/>
+            <circle cx="26" cy="24" r="12" fill="none" stroke="#000" stroke-width="1.5"/>
+          </svg>
+        `;
+      }
     }
     
-    document.getElementById('sunMoonValue').textContent = isDaytime ? 'Daytime' : 'Nighttime';
+    document.getElementById('dayNightValue').textContent = isDaytime ? 'Daytime' : 'Nighttime';
     
     const timeUntil = isDaytime 
       ? `${Math.floor((sunset - now) / 3600000)}h until sunset`
       : `${Math.floor((sunrise.setDate(sunrise.getDate() + 1) - now) / 3600000)}h until sunrise`;
     
     document.getElementById('sunMoonDescription').textContent = timeUntil;
-    
-    document.getElementById('sunriseValue').textContent = '6:30 AM';
-    document.getElementById('sunsetValue').textContent = '6:45 PM';
   }
   
   updateAuroraCard(aurora) {
@@ -515,12 +518,8 @@ class SkyMirror {
   }
   
   showSuccessAnimation() {
-    // Simple fade-out on banner
-    const banner = document.getElementById('ritualBanner');
-    banner.style.opacity = '0.5';
-    setTimeout(() => {
-      banner.style.opacity = '1';
-    }, 1000);
+    // Show success message in modal
+    console.log('✨ Reflection saved successfully');
   }
   
   showReflections() {

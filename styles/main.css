@@ -1,0 +1,839 @@
+/* SkyMirror — Monochrome + Soft Pastels */
+/* Scientific sketchbook aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap');
+
+:root {
+  /* Base colors */
+  --white: #FFFFFF;
+  --black: #000000;
+  
+  /* Pastel accents */
+  --accent-wind: #A3C4F3;
+  --accent-temp: #F9A8A8;
+  --accent-air: #B5EAD7;
+  --accent-sky: #C8BFE7;
+  
+  /* Typography */
+  --font-primary: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--white);
+  border-bottom: 1px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+  z-index: 1000;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.header-icons {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-medium) var(--ease-smooth);
+  font-size: 1.2rem;
+}
+
+.icon-btn:hover {
+  background: rgba(163, 196, 243, 0.15);
+  transform: scale(1.05);
+}
+
+/* Main Dashboard */
+.dashboard {
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+  padding: var(--spacing-xl);
+  background: 
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  position: relative;
+}
+
+.dashboard-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  padding-bottom: 120px;
+}
+
+/* Weather Cards */
+.weather-card {
+  background: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  transition: all var(--duration-medium) var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-card:hover {
+  transform: scale(1.02);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.card-value {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.card-description {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.7;
+}
+
+/* Accent backgrounds */
+.card-wind { 
+  background: linear-gradient(135deg, rgba(163, 196, 243, 0.08) 0%, var(--white) 100%); 
+  border-left: 3px solid var(--accent-wind);
+}
+.card-temp { 
+  background: linear-gradient(135deg, rgba(249, 168, 168, 0.08) 0%, var(--white) 100%); 
+  border-left: 3px solid var(--accent-temp);
+}
+.card-air { 
+  background: linear-gradient(135deg, rgba(181, 234, 215, 0.08) 0%, var(--white) 100%); 
+  border-left: 3px solid var(--accent-air);
+}
+.card-sky { 
+  background: linear-gradient(135deg, rgba(200, 191, 231, 0.08) 0%, var(--white) 100%); 
+  border-left: 3px solid var(--accent-sky);
+}
+.card-extra {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(0, 0, 0, 0.01) 10px,
+      rgba(0, 0, 0, 0.01) 20px
+    ),
+    var(--white);
+  border-left: 3px solid var(--black);
+}
+
+.card-aurora {
+  background: linear-gradient(135deg, rgba(163, 196, 243, 0.05) 0%, rgba(200, 191, 231, 0.05) 100%);
+  border-left: 3px solid var(--accent-sky);
+}
+
+.card-moon {
+  background: radial-gradient(circle at 30% 30%, rgba(200, 191, 231, 0.08), var(--white));
+  border-left: 3px solid var(--accent-sky);
+}
+
+.card-sound {
+  background: linear-gradient(135deg, rgba(163, 196, 243, 0.03) 0%, var(--white) 100%);
+  border-left: 3px solid var(--accent-wind);
+}
+
+.card-illustration {
+  background: var(--white);
+  grid-column: 1 / -1;  /* Span full width */
+  min-height: 350px;
+  max-height: 500px;
+  border: 2px solid var(--black);
+  overflow: hidden;
+}
+
+/* Animations Container */
+.card-animation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+/* Wind Animation */
+.wind-swirls {
+  width: 100%;
+  height: 100%;
+}
+
+.wind-swirl {
+  stroke: var(--accent-wind);
+  stroke-width: 2;
+  fill: none;
+  animation: windMove 4s ease-in-out infinite;
+}
+
+.wind-swirl:nth-child(2) { animation-delay: 1.3s; opacity: 0.6; }
+.wind-swirl:nth-child(3) { animation-delay: 2.6s; opacity: 0.4; }
+
+@keyframes windMove {
+  0%, 100% { transform: translateX(0) translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(30px) translateY(-10px); }
+}
+
+/* Temperature Shimmer */
+.temp-shimmer {
+  width: 100%;
+  height: 100%;
+}
+
+.shimmer-ray {
+  stroke: var(--accent-temp);
+  stroke-width: 2;
+  fill: none;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.shimmer-ray:nth-child(2) { animation-delay: 0.5s; }
+.shimmer-ray:nth-child(3) { animation-delay: 1s; }
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Air Quality Pulse */
+.air-pulse {
+  width: 100%;
+  height: 100%;
+}
+
+.pulse-circle {
+  stroke: var(--accent-air);
+  stroke-width: 1;
+  fill: var(--accent-air);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-circle:nth-child(2) { animation-delay: 0.7s; opacity: 0.5; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Sky Clouds */
+.sky-clouds {
+  width: 100%;
+  height: 100%;
+}
+
+.cloud-shape {
+  stroke: var(--accent-sky);
+  stroke-width: 1;
+  fill: var(--accent-sky);
+  opacity: 0.3;
+  animation: cloudFloat 8s ease-in-out infinite;
+}
+
+.cloud-shape:nth-child(2) { animation-delay: 2s; }
+
+@keyframes cloudFloat {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+}
+
+/* Detail Stats */
+.detail-stats {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+/* Scene Container */
+.scene-container {
+  width: 100%;
+  height: 320px;
+  display: block;
+  margin: var(--spacing-md) 0;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  background: rgba(0, 0, 0, 0.02);
+  position: relative;
+}
+
+.scene-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Fun Fact */
+.fun-fact {
+  padding: var(--spacing-md);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 25px,
+    rgba(0, 0, 0, 0.03) 25px,
+    rgba(0, 0, 0, 0.03) 26px
+  );
+  border-radius: 8px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.fun-fact p {
+  font-size: 1rem;
+  line-height: 1.8;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Daily Ritual Banner */
+.ritual-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-medium) var(--ease-smooth);
+  z-index: 999;
+}
+
+.ritual-banner:hover {
+  height: 90px;
+  background: #1a1a1a;
+}
+
+.ritual-banner-text {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Generic Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: black;
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-right: 2rem;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.textarea {
+  min-height: 150px;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+/* Ritual Modal */
+.ritual-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-medium) var(--ease-smooth);
+}
+
+.ritual-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.ritual-content {
+  max-width: 600px;
+  width: 90%;
+  background: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 12px;
+  padding: var(--spacing-xl);
+  position: relative;
+}
+
+.ritual-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+}
+
+.ritual-title span {
+  display: inline-block;
+  opacity: 0;
+  animation: typewriter 0.1s forwards;
+}
+
+@keyframes typewriter {
+  to { opacity: 1; }
+}
+
+.ritual-prompt {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.7;
+}
+
+.ritual-input {
+  width: 100%;
+  min-height: 150px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 300;
+  resize: vertical;
+  margin-bottom: var(--spacing-md);
+  background: var(--white);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.ritual-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(163, 196, 243, 0.3);
+}
+
+.ritual-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  background: transparent;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all var(--duration-medium) var(--ease-smooth);
+}
+
+.btn:hover {
+  background: rgba(163, 196, 243, 0.15);
+}
+
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: #333;
+}
+
+/* Side Panel (Timeline) */
+.side-panel {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  width: 320px;
+  height: calc(100vh - 60px - 80px);
+  background: var(--white);
+  border-left: 1px solid var(--black);
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform var(--duration-medium) var(--ease-smooth);
+  z-index: 998;
+}
+
+.side-panel.active {
+  transform: translateX(0);
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-lg);
+}
+
+.timeline {
+  position: relative;
+  padding-left: var(--spacing-lg);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--black);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-md);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.timeline-time {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-bottom: var(--spacing-xs);
+}
+
+.timeline-description {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+/* Notes Modal */
+.notes-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-medium) var(--ease-smooth);
+  overflow-y: auto;
+}
+
+.notes-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.notes-content {
+  max-width: 800px;
+  width: 90%;
+  background: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 12px;
+  padding: var(--spacing-xl);
+  margin: var(--spacing-xl) auto;
+}
+
+.reflection-item {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-md);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.reflection-item:hover {
+  background: rgba(163, 196, 243, 0.05);
+}
+
+.reflection-date {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-bottom: var(--spacing-xs);
+}
+
+.reflection-text {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* Loading State */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.loading-cloud {
+  width: 80px;
+  height: 80px;
+  animation: expandCloud 1.5s ease-in-out infinite;
+}
+
+@keyframes expandCloud {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Star Details Modal */
+.star-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.star-details-modal p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.star-details-modal strong {
+  font-weight: 500;
+  opacity: 0.7;
+  margin-right: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .dashboard {
+    padding: var(--spacing-md);
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .side-panel {
+    width: 100%;
+  }
+  
+  .ritual-banner {
+    height: 60px;
+  }
+  
+  .ritual-banner:hover {
+    height: 65px;
+  }
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

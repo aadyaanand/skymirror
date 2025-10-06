@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMirror — Space Weather Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/game.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="mainMenu" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">skymirror</h1>
+            <p class="game-subtitle">Space Weather Adventure</p>
+            
+            <div class="menu-buttons">
+                <button class="menu-btn" onclick="startGame()">
+                    <span class="btn-icon">🎮</span>
+                    <span>Play Aurora Catcher</span>
+                </button>
+                
+                <button class="menu-btn" onclick="showDiary()">
+                    <span class="btn-icon">📖</span>
+                    <span>My Sky Diary</span>
+                </button>
+                
+                <button class="menu-btn" onclick="showStories()">
+                    <span class="btn-icon">⭐</span>
+                    <span>Star Stories</span>
+                </button>
+            </div>
+            
+            <div class="stats-display">
+                <div class="stat">
+                    <span class="stat-label">Auroras Caught</span>
+                    <span class="stat-value" id="totalAuroras">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Stories Unlocked</span>
+                    <span class="stat-value" id="totalStories">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aurora Catcher Game -->
+    <div id="gameScreen" class="screen">
+        <div class="game-header">
+            <button class="back-btn" onclick="backToMenu()">← Back</button>
+            <div class="game-stats">
+                <span>Score: <strong id="gameScore">0</strong></span>
+                <span>Time: <strong id="gameTime">60</strong>s</span>
+                <span>Speed: <strong id="gameSpeed">1.0</strong>x</span>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="game-instructions">
+            Click the aurora streaks to catch them! Each one teaches you about space weather.
+        </div>
+    </div>
+
+    <!-- Sky Diary -->
+    <div id="diaryScreen" class="screen">
+        <div class="screen-container">
+            <h2 class="screen-title">My Sky Diary</h2>
+            <button class="back-btn" onclick="backToMenu()">← Back</button>
+            
+            <div id="diaryEntries" class="diary-list">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Star Stories -->
+    <div id="storiesScreen" class="screen">
+        <div class="screen-container">
+            <h2 class="screen-title">Star Stories</h2>
+            <button class="back-btn" onclick="backToMenu()">← Back</button>
+            
+            <div class="stories-grid" id="storiesGrid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Popup -->
+    <div id="eduPopup" class="popup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">×</button>
+            <h3 id="popupTitle">Did You Know?</h3>
+            <p id="popupText"></p>
+            <button class="popup-btn" onclick="closePopup()">Got it!</button>
+        </div>
+    </div>
+
+    <script src="/js/game.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skymirror ☁︎ — Space Weather Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: white;
+            color: black;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        .container { max-width: 900px; padding: 3rem; text-align: center; }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.7;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+        }
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .choice-card {
+            padding: 3rem 2rem;
+            border: 2px solid black;
+            border-radius: 16px;
+            text-decoration: none;
+            color: black;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: white;
+        }
+        .choice-card:hover {
+            background: black;
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .choice-icon { font-size: 4rem; }
+        .choice-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        .choice-desc {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            opacity: 0.5;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .choice-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>skymirror</h1>
+        <p class="tagline">Look up. SkyMirror looks back.</p>
+        <p class="subtitle">
+            A dual-purpose space weather education platform combining interactive visualization with gamified learning
+        </p>
+        
+        <div class="choice-grid">
+            <a href="/app.html" class="choice-card">
+                <div class="choice-icon">🌌</div>
+                <div class="choice-title">Sky Explorer</div>
+                <div class="choice-desc">
+                    Real-time weather data, 30+ clickable stars with epic stories, aurora forecasts, moon phases, and daily reflection ritual
+                </div>
+            </a>
+            
+            <a href="/game.html" class="choice-card">
+                <div class="choice-icon">🎮</div>
+                <div class="choice-title">Aurora Catcher Game</div>
+                <div class="choice-desc">
+                    Educational mini-game for kids! Catch falling auroras, learn space weather facts, track progress, unlock stories
+                </div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <strong>NASA Space Apps Challenge 2025</strong><br>
+            Stellar Stories: Space Weather Through the Eyes of Earthlings<br>
+            <br>
+            Data from NASA SWPC · NOAA · Open-Meteo<br>
+            Open Source · Apache 2.0 License
+        </div>
+    </div>
+</body>
+</html>

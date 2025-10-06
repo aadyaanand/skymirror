@@ -1,0 +1,15 @@
+{
+  "name": "skymirror",
+  "version": "2.0.0",
+  "description": "Look up. SkyMirror looks back. Dual-purpose space weather education platform.",
+  "scripts": {
+    "dev": "npx serve -p 3000",
+    "start": "npx serve -p 3000"
+  },
+  "keywords": ["space-weather", "nasa", "education", "game", "astronomy"],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

@@ -48,6 +48,11 @@ class SkyMirror {
       window.initStarScene();
     }
     
+    // Load a random perspective story
+    if (window.loadNewPerspective) {
+      window.loadNewPerspective();
+    }
+    
     // Fetch weather data
     await this.updateWeather();
     

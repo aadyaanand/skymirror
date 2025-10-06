@@ -217,11 +217,16 @@ class SkyMirror {
   
   updateWindCard(weather) {
     const direction = this.weatherAPI.getWindDirection(weather.windDirection);
-    const description = this.weatherAPI.getWindDescription(weather.windSpeed);
+    const speed = weather.windSpeed;
     
-    document.getElementById('windValue').textContent = `${weather.windSpeed} km/h`;
-    document.getElementById('windDescription').textContent = 
-      `${description} ${direction.toLowerCase()} breeze`;
+    let kidFriendly = '';
+    if (speed < 5) kidFriendly = '🍃 Almost no wind - perfect for bubbles!';
+    else if (speed < 15) kidFriendly = '🌬️ Gentle breeze - great for flying kites!';
+    else if (speed < 30) kidFriendly = '💨 Windy day - hold onto your hat!';
+    else kidFriendly = '🌪️ Very windy - stay safe inside!';
+    
+    document.getElementById('windValue').textContent = `${Math.round(speed)} km/h`;
+    document.getElementById('windDescription').textContent = kidFriendly;
   }
   
   updateTempCard(weather) {
@@ -234,50 +239,63 @@ class SkyMirror {
     }
     
     const unit = this.settings.tempUnit === 'F' ? '°F' : '°C';
-    const description = this.weatherAPI.getTempDescription(weather.temperature);
+    
+    let kidFriendly = '';
+    if (temp < 0) kidFriendly = '🥶 Freezing cold - wear all your warm clothes!';
+    else if (temp < 10) kidFriendly = '❄️ Very cold - time for a warm jacket!';
+    else if (temp < 20) kidFriendly = '😊 Cool and comfy - perfect weather!';
+    else if (temp < 30) kidFriendly = '☀️ Warm and nice - great for playing outside!';
+    else kidFriendly = '🔥 Super hot - stay cool and drink lots of water!';
     
     document.getElementById('tempValue').textContent = `${temp}${unit}`;
-    document.getElementById('tempDescription').textContent = 
-      `${description} — feels like ${apparent}${unit}`;
+    document.getElementById('tempDescription').textContent = kidFriendly;
   }
   
   updateAirCard(airQuality) {
-    document.getElementById('airValue').textContent = `AQI ${airQuality.aqi}`;
-    document.getElementById('airDescription').textContent = 
-      `Air quality ${airQuality.description.toLowerCase()}`;
+    const aqi = airQuality.aqi;
+    let kidFriendly = '';
+    
+    if (aqi <= 50) kidFriendly = '😊 Air is super clean - breathe easy!';
+    else if (aqi <= 100) kidFriendly = '👍 Air is pretty good today!';
+    else if (aqi <= 150) kidFriendly = '😷 Air is a bit dusty - be careful if you have asthma';
+    else kidFriendly = '⚠️ Air is not healthy - play indoors today!';
+    
+    document.getElementById('airValue').textContent = `AQI ${aqi}`;
+    document.getElementById('airDescription').textContent = kidFriendly;
   }
   
   updateSkyCard(weather) {
     const weatherInfo = this.weatherAPI.interpretWeatherCode(weather.weatherCode);
     const cloudiness = weather.cloudCover;
     
-    let cloudinessText = 'clear';
-    if (cloudiness > 75) cloudinessText = 'overcast';
-    else if (cloudiness > 50) cloudinessText = 'mostly cloudy';
-    else if (cloudiness > 25) cloudinessText = 'partly cloudy';
+    let kidFriendly = '';
+    if (cloudiness <= 10) kidFriendly = '☀️ Bright blue sky - perfect for stargazing tonight!';
+    else if (cloudiness <= 30) kidFriendly = '🌤️ Mostly sunny with a few fluffy clouds!';
+    else if (cloudiness <= 70) kidFriendly = '⛅ Mix of sun and clouds - look for shapes in them!';
+    else kidFriendly = '☁️ Very cloudy - the clouds are hiding the sun!';
     
     document.getElementById('skyValue').textContent = weatherInfo.condition;
-    document.getElementById('skyDescription').textContent = 
-      `${cloudinessText} — ${cloudiness}% cloud cover`;
+    document.getElementById('skyDescription').textContent = kidFriendly;
   }
   
   updateHumidityCard(weather) {
     const humidity = weather.humidity;
     
-    let feeling = 'comfortable';
-    if (humidity > 80) feeling = 'very humid';
-    else if (humidity > 65) feeling = 'humid';
-    else if (humidity < 30) feeling = 'dry';
+    let kidFriendly = '';
+    if (humidity > 80) kidFriendly = '💧 Very humid - the air feels thick and sticky!';
+    else if (humidity > 65) kidFriendly = '😅 A bit humid - you might sweat more';
+    else if (humidity > 30) kidFriendly = '😊 Just right - feels comfortable!';
+    else kidFriendly = '🏜️ Dry air - drink extra water!';
     
     document.getElementById('humidityValue').textContent = `${humidity}%`;
-    document.getElementById('humidityDescription').textContent = `Feels ${feeling}`;
+    document.getElementById('humidityDescription').textContent = kidFriendly;
     
     // Fake pressure and visibility for now (would need additional API)
     const pressure = 1013 + Math.floor(Math.random() * 20) - 10;
     const visibility = weather.cloudCover < 50 ? '10+ km' : '5-8 km';
     
     document.getElementById('pressureValue').textContent = `${pressure} hPa`;
-    document.getElementById('visibilityValue').textContent = visibility;
+    document.getElementById('visibilityValue').textContent = `You can see ${visibility} away`;
   }
   
   updateSunMoonCard() {
@@ -316,21 +334,31 @@ class SkyMirror {
       }
     }
     
-    document.getElementById('dayNightValue').textContent = isDaytime ? 'Daytime' : 'Nighttime';
+    const timeValue = isDaytime ? '☀️ The Sun is up!' : '🌙 The Moon is out!';
+    document.getElementById('dayNightValue').textContent = timeValue;
     
-    const timeUntil = isDaytime 
-      ? `${Math.floor((sunset - now) / 3600000)}h until sunset`
-      : `${Math.floor((sunrise.setDate(sunrise.getDate() + 1) - now) / 3600000)}h until sunrise`;
+    const hoursUntil = isDaytime 
+      ? Math.floor((sunset - now) / 3600000)
+      : Math.floor((sunrise.setDate(sunrise.getDate() + 1) - now) / 3600000);
     
-    document.getElementById('sunMoonDescription').textContent = timeUntil;
+    const kidFriendly = isDaytime 
+      ? `The sun will set in ${hoursUntil} hours - time to play outside!`
+      : `The sun will rise in ${hoursUntil} hours - perfect for stargazing!`;
+    
+    document.getElementById('sunMoonDescription').textContent = kidFriendly;
   }
   
   updateAuroraCard(aurora) {
-    const kpLevels = ['Quiet', 'Quiet', 'Unsettled', 'Active', 'Active', 'Minor Storm', 'Major Storm', 'Severe Storm', 'Extreme Storm'];
-    const kpText = kpLevels[Math.min(aurora.kpIndex, 8)] || 'Unknown';
+    const kp = aurora.kpIndex;
+    let kidFriendly = '';
     
-    document.getElementById('auroraValue').textContent = `Kp ${aurora.kpIndex}`;
-    document.getElementById('auroraDescription').textContent = `${kpText} — ${aurora.visibilityChance}% visible tonight`;
+    if (kp <= 2) kidFriendly = '😴 No auroras tonight - the Sun is calm and quiet!';
+    else if (kp <= 4) kidFriendly = '🌟 Small auroras might appear way up north!';
+    else if (kp <= 6) kidFriendly = '🎨 Auroras are dancing! Northern lights are glowing!';
+    else kidFriendly = '🌈 WOW! SUPER strong auroras - the Sun is very active!';
+    
+    document.getElementById('auroraValue').textContent = `Space Storm Level ${kp}`;
+    document.getElementById('auroraDescription').textContent = kidFriendly;
     
     // Render aurora animation
     const vizContainer = document.getElementById('auroraViz');
@@ -367,7 +395,16 @@ class SkyMirror {
       }
       
       vizContainer.innerHTML = this.moonPhase.renderMoonSVG(phase);
-      descContainer.textContent = `${phase.illumination}% illuminated — ${phase.name}`;
+      
+      let kidFriendly = '';
+      if (phase.name === 'New Moon') kidFriendly = "🌑 New Moon - it's invisible tonight!";
+      else if (phase.name.includes('Crescent')) kidFriendly = `🌙 ${phase.name} - looks like a smile in the sky!`;
+      else if (phase.name.includes('Quarter')) kidFriendly = `🌓 ${phase.name} - half the moon is shining!`;
+      else if (phase.name.includes('Gibbous')) kidFriendly = `🌔 ${phase.name} - almost a full circle!`;
+      else if (phase.name === 'Full Moon') kidFriendly = '🌕 Full Moon - bright and round like a soccer ball!';
+      else kidFriendly = `${phase.name} - ${phase.illumination}% lit up`;
+      
+      descContainer.textContent = kidFriendly;
       
       console.log('✅ Moon phase updated successfully');
     } catch (error) {

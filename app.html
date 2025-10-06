@@ -41,7 +41,7 @@
             <!-- Current Scene Card -->
             <div class="weather-card card-illustration fade-in" style="animation-delay: 0s;">
                 <div class="card-header">
-                    <h2 class="card-title">Current Scene</h2>
+                    <h2 class="card-title">✨ Your Sky Right Now</h2>
                 </div>
                 <div id="weatherScene" style="width: 100%; min-height: 300px; max-height: 400px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(0,0,0,0.1); border-radius: 8px; background: rgba(0,0,0,0.01); overflow: hidden;">
                     <!-- SVG scene will load here via stars.js -->
@@ -49,14 +49,14 @@
                         <text x="400" y="200" font-size="16" fill="#000" text-anchor="middle" opacity="0.5">Loading scene...</text>
                     </svg>
                 </div>
-                <p class="card-description" style="margin-top: 1rem;">Click stars and celestial objects to explore their stories</p>
+                <p class="card-description" style="margin-top: 1rem;">✨ Click on the stars, Sun, Moon, and planets to learn their amazing stories!</p>
             </div>
             
             <!-- Wind Card -->
             <div class="weather-card card-wind fade-in" style="animation-delay: 0.1s;">
                 <div class="card-header">
                     <div class="card-icon" id="windIcon"></div>
-                    <h2 class="card-title">Wind</h2>
+                    <h2 class="card-title">🌬️ Wind Speed</h2>
                 </div>
                 <div class="card-value" id="windValue">—</div>
                 <p class="card-description" id="windDescription">—</p>
@@ -66,7 +66,7 @@
             <div class="weather-card card-temp fade-in" style="animation-delay: 0.2s;">
                 <div class="card-header">
                     <div class="card-icon" id="tempIcon"></div>
-                    <h2 class="card-title">Temperature</h2>
+                    <h2 class="card-title">🌡️ How Hot or Cold?</h2>
                 </div>
                 <div class="card-value" id="tempValue">—</div>
                 <p class="card-description" id="tempDescription">—</p>
@@ -76,7 +76,7 @@
             <div class="weather-card card-air fade-in" style="animation-delay: 0.3s;">
                 <div class="card-header">
                     <div class="card-icon" id="airIcon"></div>
-                    <h2 class="card-title">Air Quality</h2>
+                    <h2 class="card-title">🍃 Air Quality</h2>
                 </div>
                 <div class="card-value" id="airValue">—</div>
                 <p class="card-description" id="airDescription">—</p>
@@ -86,7 +86,7 @@
             <div class="weather-card card-sky fade-in" style="animation-delay: 0.4s;">
                 <div class="card-header">
                     <div class="card-icon" id="skyIcon"></div>
-                    <h2 class="card-title">Sky</h2>
+                    <h2 class="card-title">☁️ Clouds & Weather</h2>
                 </div>
                 <div class="card-value" id="skyValue">—</div>
                 <p class="card-description" id="skyDescription">—</p>
@@ -95,19 +95,19 @@
             <!-- Humidity & Pressure Card -->
             <div class="weather-card card-extra fade-in" style="animation-delay: 0.5s;">
                 <div class="card-header">
-                    <h2 class="card-title">Atmosphere</h2>
+                    <h2 class="card-title">💧 Humidity & Air Pressure</h2>
                 </div>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                     <div>
                         <div class="card-value" id="humidityValue" style="font-size: 1.8rem;">—</div>
-                        <p class="card-description" id="humidityDescription">Humidity</p>
+                        <p class="card-description" id="humidityDescription">How humid?</p>
                     </div>
                     <div style="text-align: right;">
                         <div class="card-value" id="pressureValue" style="font-size: 1.8rem;">—</div>
-                        <p class="card-description">Pressure</p>
+                        <p class="card-description">Air pressure</p>
                     </div>
                 </div>
-                <p class="card-description">Visibility: <span id="visibilityValue">—</span></p>
+                <p class="card-description">How far can you see? <span id="visibilityValue">—</span></p>
             </div>
             
             <!-- Sun & Moon Card -->
@@ -118,7 +118,7 @@
                             <circle cx="24" cy="24" r="12" fill="none" stroke="#000" stroke-width="2"/>
                         </svg>
                     </div>
-                    <h2 class="card-title">Sun & Moon</h2>
+                    <h2 class="card-title">☀️ Day or Night?</h2>
                 </div>
                 <div class="card-value" id="dayNightValue">—</div>
                 <p class="card-description" id="sunMoonDescription">—</p>
@@ -134,7 +134,7 @@
                             <path d="M 14 40 Q 22 30 24 35 Q 26 30 34 40" fill="none" stroke="#C8BFE7" stroke-width="2"/>
                         </svg>
                     </div>
-                    <h2 class="card-title">Aurora Activity</h2>
+                    <h2 class="card-title">🌌 Northern Lights Tracker</h2>
                 </div>
                 <div class="card-value" id="auroraValue">—</div>
                 <p class="card-description" id="auroraDescription">—</p>
@@ -144,7 +144,7 @@
             <!-- Moon Phase Card -->
             <div class="weather-card card-moon fade-in" style="animation-delay: 0.8s;">
                 <div class="card-header">
-                    <h2 class="card-title">Moon Phase</h2>
+                    <h2 class="card-title">🌙 Moon Shape Today</h2>
                 </div>
                 <div id="moonPhaseViz" style="width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(0,0,0,0.1); border-radius: 8px; background: rgba(0,0,0,0.01);">
                     <!-- Moon SVG will load here -->
@@ -166,9 +166,9 @@
                             <path d="M 33 17 Q 38 24 33 31" fill="none" stroke="#000" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <h2 class="card-title">Sky Soundscape</h2>
+                    <h2 class="card-title">🎵 Sounds of the Sky</h2>
                 </div>
-                <p class="card-description">Listen to your sky as ambient sound</p>
+                <p class="card-description">🎵 Hear what the sky sounds like! Wind, rain, and space!</p>
                 <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
                     <button class="btn btn-primary" id="playSoundBtn" style="flex: 1; padding: 0.75rem;">
                         ▶ Play
@@ -178,7 +178,7 @@
                     </button>
                 </div>
                 <p class="card-description" id="soundDescription" style="margin-top: 0.75rem; font-size: 0.85rem;">
-                    Wind, rain, and atmosphere as audio
+                    Close your eyes and listen to the weather music!
                 </p>
             </div>
             
@@ -186,10 +186,10 @@
             <div class="weather-card card-extra fade-in" style="animation-delay: 1s;">
                 <div class="card-header">
                     <div class="card-icon">💡</div>
-                    <h2 class="card-title">Did You Know?</h2>
+                    <h2 class="card-title">💡 Cool Space Facts!</h2>
                 </div>
                 <p class="card-description" id="funFact" style="line-height: 1.8; font-size: 1rem;">
-                    Loading a fun fact about the sky...
+                    Loading a cool space fact just for you...
                 </p>
             </div>
             

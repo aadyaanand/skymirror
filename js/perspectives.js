@@ -3,8 +3,9 @@
 
 const SpacePerspectives = [
   {
-    character: "👨‍🌾 Farmer Maya",
+    character: "Farmer Maya",
     emoji: "🌾",
+    illustration: "farmer",
     title: "GPS and Precision Farming",
     story: `Hi! I'm Maya, and I farm corn in Iowa. You might wonder - what does space weather have to do with farming?
 
@@ -18,8 +19,9 @@ The auroras are beautiful, but they mean my GPS might not work right for a few d
   },
   
   {
-    character: "✈️ Pilot James",
+    character: "Pilot James",
     emoji: "🛩️",
+    illustration: "pilot",
     title: "Flying Through Solar Radiation",
     story: `I'm Captain James, and I fly airplanes across the North Pole from New York to Tokyo. It's the shortest route, but it's also where space weather hits hardest!
 
@@ -33,8 +35,9 @@ During the really big storms, airlines can cancel polar flights completely. Safe
   },
   
   {
-    character: "👨‍🚀 Astronaut Chen",
+    character: "Astronaut Chen",
     emoji: "🚀",
+    illustration: "astronaut",
     title: "Living in Space During Solar Storms",
     story: `Hello from the International Space Station! I'm Dr. Chen, and I've been living in space for 3 months.
 
@@ -50,8 +53,9 @@ Without space weather monitoring from Earth, we wouldn't be safe up here!`,
   },
   
   {
-    character: "⚡ Power Grid Manager Sarah",
+    character: "Power Grid Manager Sarah",
     emoji: "🔌",
+    illustration: "powerGrid",
     title: "Protecting Your Electricity",
     story: `I'm Sarah, and I work at a power company. My job is to make sure electricity keeps flowing to your homes, schools, and hospitals.
 
@@ -67,8 +71,9 @@ It's like preparing for a hurricane, but from space! Thanks to better forecastin
   },
   
   {
-    character: "📡 Satellite Engineer Dr. Patel",
+    character: "Satellite Engineer Dr. Patel",
     emoji: "🛰️",
+    illustration: "engineer",
     title: "Protecting Satellites",
     story: `Namaste! I'm Dr. Patel, and I design and monitor satellites that orbit Earth.
 
@@ -92,8 +97,9 @@ Every satellite I launch has to be tough enough to survive 10-15 years of solar 
   },
   
   {
-    character: "🌊 Fisherman Diego",
+    character: "Fisherman Diego",
     emoji: "🎣",
+    illustration: "fisherman",
     title: "Navigation at Sea",
     story: `¡Hola! I'm Diego, a fishing boat captain from Chile. I spend weeks at sea fishing for tuna.
 
@@ -109,8 +115,9 @@ Now I check space weather forecasts just like I check ocean weather. If a big so
   },
   
   {
-    character: "☀️ A Solar Flare's Journey",
+    character: "A Solar Flare's Journey",
     emoji: "🌟",
+    illustration: "solarFlare",
     title: "I Am a Coronal Mass Ejection!",
     story: `WHOOOOSH! I just exploded off the Sun's surface! I'm a Coronal Mass Ejection (CME) - a massive cloud of billions of tons of solar plasma!
 
@@ -139,8 +146,9 @@ See you in 18 hours, Earth! 🌍✨`,
   },
   
   {
-    character: "📻 Radio Operator Elena",
+    character: "Radio Operator Elena",
     emoji: "📡",
+    illustration: "radioOperator",
     title: "When Radio Waves Disappear",
     story: `Hi everyone! I'm Elena, and I run emergency radio communications for a search and rescue team in Alaska.
 

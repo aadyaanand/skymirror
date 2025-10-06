@@ -49,18 +49,36 @@ function showWelcome() {
   const container = document.getElementById('onboardingContent');
   container.innerHTML = `
     <div class="onboarding-step" style="text-align: center; animation: fadeIn 0.5s ease-out;">
-      <h1 style="font-size: 4rem; margin-bottom: 1rem;">🌌</h1>
-      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Welcome to SkyMirror</h2>
-      <p style="font-size: 1.3rem; line-height: 1.8; max-width: 600px; margin: 2rem auto; opacity: 0.8;">
-        Every day, something amazing happens 93 million miles away.<br><br>
-        The Sun sends invisible waves of energy and particles toward Earth. This is called <strong>space weather</strong>.<br><br>
-        It affects real people all around the world, in ways you might not expect...
+      <!-- Big Sun -->
+      <div style="width: 160px; height: 160px; margin: 0 auto 2rem; position: relative;">
+        <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+          <circle cx="50" cy="50" r="30" fill="rgba(249,168,38,0.3)" stroke="#F9A826" stroke-width="3"/>
+          <line x1="50" y1="10" x2="50" y2="5" stroke="#F9A826" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="90" x2="50" y2="95" stroke="#F9A826" stroke-width="3" stroke-linecap="round"/>
+          <line x1="10" y1="50" x2="5" y2="50" stroke="#F9A826" stroke-width="3" stroke-linecap="round"/>
+          <line x1="90" y1="50" x2="95" y2="50" stroke="#F9A826" stroke-width="3" stroke-linecap="round"/>
+          <line x1="20" y1="20" x2="15" y2="15" stroke="#F9A826" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="80" y1="20" x2="85" y2="15" stroke="#F9A826" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="20" y1="80" x2="15" y2="85" stroke="#F9A826" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="80" y1="80" x2="85" y2="85" stroke="#F9A826" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="42" cy="45" r="4" fill="#000"/>
+          <circle cx="58" cy="45" r="4" fill="#000"/>
+          <path d="M 40 55 Q 50 62 60 55" fill="none" stroke="#000" stroke-width="2.5"/>
+        </svg>
+      </div>
+      
+      <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem; font-weight: 500;">Welcome to SkyMirror!</h2>
+      <p style="font-size: 1.4rem; line-height: 2; max-width: 600px; margin: 0 auto 2.5rem; color: #333;">
+        Did you know?<br>
+        The <strong style="color: #F9A826;">Sun</strong> is 93 million miles away...<br>
+        But it affects your life <strong>every single day!</strong> 🌟<br><br>
+        Let's meet some friends who feel space weather too...
       </p>
       <button class="onboarding-btn" onclick="window.showPerspectives()">
-        Let's Meet Them →
+        👋 Meet My Friends! →
       </button>
       <button class="onboarding-btn-skip" onclick="window.skipOnboarding()">
-        Skip Introduction
+        Skip Stories
       </button>
     </div>
   `;
@@ -78,33 +96,71 @@ function showPerspectives() {
   
   const isLast = onboardingState.currentPerspective === window.SpacePerspectives.length - 1;
   
+  // Get character illustration
+  const illustration = window.CharacterIllustrations && window.CharacterIllustrations[perspective.illustration]
+    ? window.CharacterIllustrations[perspective.illustration]
+    : `<div style="font-size: 6rem;">${perspective.emoji}</div>`;
+  
+  // Color scheme for each character
+  const colors = [
+    '#B5EAD7', // Green for farmer
+    '#A3C4F3', // Blue for pilot
+    '#C8BFE7', // Purple for astronaut
+    '#F9A826', // Orange for power grid
+    '#FFD6E8', // Pink for engineer
+    '#A3C4F3', // Blue for fisherman
+    '#FEF3C7', // Yellow for solar flare
+    '#C8BFE7'  // Purple for radio
+  ];
+  const bgColor = colors[onboardingState.currentPerspective % colors.length];
+  
   container.innerHTML = `
     <div class="onboarding-step" style="animation: fadeIn 0.5s ease-out;">
-      <div style="font-size: 4rem; margin-bottom: 1rem;">${perspective.emoji}</div>
-      <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">${perspective.character}</h2>
-      <h3 style="font-size: 1.3rem; opacity: 0.7; margin-bottom: 2rem;">${perspective.title}</h3>
-      
-      <div style="max-width: 700px; margin: 0 auto; padding: 2rem; background: rgba(163, 196, 243, 0.05); border-radius: 12px; border: 1px solid rgba(0,0,0,0.1);">
-        <p style="line-height: 1.8; white-space: pre-line; font-size: 1.05rem;">${perspective.story}</p>
+      <!-- Character Illustration -->
+      <div style="width: 180px; height: 180px; margin: 0 auto 1.5rem; padding: 1rem; background: ${bgColor}; border-radius: 50%; border: 3px solid #000; display: flex; align-items: center; justify-content: center;">
+        ${illustration}
       </div>
       
-      <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(181, 234, 215, 0.1); border-radius: 8px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        <p style="font-size: 0.95rem;"><strong>💡 Impact:</strong> ${perspective.impact}</p>
-        <p style="font-size: 0.95rem; margin-top: 0.5rem;"><strong>✅ Solution:</strong> ${perspective.solution}</p>
+      <!-- Character Name -->
+      <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem; color: #000;">
+        ${perspective.emoji} ${perspective.character}
+      </h2>
+      <h3 style="font-size: 1.2rem; opacity: 0.7; margin-bottom: 2rem; font-weight: 400;">
+        ${perspective.title}
+      </h3>
+      
+      <!-- Story Box -->
+      <div style="max-width: 650px; max-height: 40vh; overflow-y: auto; margin: 0 auto; padding: 2rem; background: white; border-radius: 16px; border: 3px solid #000; box-shadow: 8px 8px 0px rgba(0,0,0,0.1);">
+        <p style="line-height: 2; white-space: pre-line; font-size: 1.1rem; text-align: left;">${perspective.story}</p>
       </div>
       
-      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+      <!-- Impact Box -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem; background: ${bgColor}; border-radius: 12px; border: 2px solid #000; max-width: 650px; margin-left: auto; margin-right: auto; box-shadow: 4px 4px 0px rgba(0,0,0,0.05);">
+        <p style="font-size: 1rem; margin-bottom: 0.75rem;"><strong>⚠️ Challenge:</strong> ${perspective.impact}</p>
+        <p style="font-size: 1rem;"><strong>✅ Solution:</strong> ${perspective.solution}</p>
+      </div>
+      
+      <!-- Buttons -->
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
         <button class="onboarding-btn" onclick="window.nextPerspective()">
-          ${isLast ? "What About Me? →" : "Next Person →"}
+          ${isLast ? "🌟 What About Me? →" : "👉 Next Friend →"}
         </button>
         <button class="onboarding-btn-skip" onclick="window.skipOnboarding()">
-          Skip to App
+          Skip Stories
         </button>
       </div>
       
-      <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.9rem;">
-        Story ${onboardingState.currentPerspective + 1} of ${window.SpacePerspectives.length}
-      </p>
+      <!-- Progress -->
+      <div style="margin-top: 1.5rem;">
+        <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.5rem;">
+          ${Array(window.SpacePerspectives.length).fill(0).map((_, i) => 
+            `<div style="width: 30px; height: 6px; background: ${i === onboardingState.currentPerspective ? '#000' : 'rgba(0,0,0,0.2)'}; border-radius: 3px;"></div>`
+          ).join('')}
+        </div>
+        <p style="opacity: 0.5; font-size: 0.9rem;">
+          Friend ${onboardingState.currentPerspective + 1} of ${window.SpacePerspectives.length}
+        </p>
+      </div>
     </div>
   `;
 }
@@ -119,42 +175,62 @@ function showAboutYou() {
   const container = document.getElementById('onboardingContent');
   container.innerHTML = `
     <div class="onboarding-step" style="text-align: center; animation: fadeIn 0.5s ease-out;">
-      <h1 style="font-size: 4rem; margin-bottom: 1rem;">🌍</h1>
-      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">What About You?</h2>
-      <p style="font-size: 1.3rem; line-height: 1.8; max-width: 600px; margin: 2rem auto; opacity: 0.8;">
-        Space weather affects everyone on Earth, including you!<br><br>
-        SkyMirror will show you what's happening in the sky above you <strong>right now</strong>.<br><br>
-        You'll see:
+      <!-- You character -->
+      <div style="width: 180px; height: 180px; margin: 0 auto 2rem; padding: 1rem; background: linear-gradient(135deg, #FFD6E8, #C8BFE7); border-radius: 50%; border: 4px solid #000; display: flex; align-items: center; justify-content: center;">
+        <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+          <!-- Happy kid face -->
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#000" stroke-width="2"/>
+          <circle cx="40" cy="45" r="5" fill="#000"/>
+          <circle cx="60" cy="45" r="5" fill="#000"/>
+          <path d="M 35 60 Q 50 72 65 60" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+          <!-- Stars in eyes -->
+          <text x="40" y="40" font-size="8" fill="#F9A826">✨</text>
+          <text x="60" y="40" font-size="8" fill="#F9A826">✨</text>
+        </svg>
+      </div>
+      
+      <h2 style="font-size: 2.8rem; margin-bottom: 1rem; font-weight: 600;">
+        What About <span style="color: #A3C4F3;">YOU</span>?
+      </h2>
+      <p style="font-size: 1.4rem; line-height: 2; max-width: 600px; margin: 0 auto 2.5rem; color: #333;">
+        Space weather affects <strong>everyone</strong> on Earth!<br>
+        Including YOU! 🌍<br><br>
+        Let's explore what's happening in<br>
+        <strong style="color: #C8BFE7;">YOUR sky</strong> right now...
       </p>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 800px; margin: 2rem auto;">
-        <div class="feature-preview">
-          <div style="font-size: 2.5rem;">🌌</div>
-          <div style="font-weight: 500; margin-top: 0.5rem;">Northern Lights</div>
-          <div style="font-size: 0.85rem; opacity: 0.7;">Real-time aurora forecasts</div>
+      <!-- Feature Grid -->
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 500px; margin: 2rem auto;">
+        <div style="padding: 1.5rem; background: #B5EAD7; border-radius: 12px; border: 2px solid #000; transition: transform 0.3s ease;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌌</div>
+          <div style="font-weight: 600; font-size: 1.1rem;">Northern Lights!</div>
+          <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">Are they visible tonight?</div>
         </div>
-        <div class="feature-preview">
-          <div style="font-size: 2.5rem;">🌙</div>
-          <div style="font-weight: 500; margin-top: 0.5rem;">Moon Phases</div>
-          <div style="font-size: 0.85rem; opacity: 0.7;">See tonight's moon shape</div>
+        
+        <div style="padding: 1.5rem; background: #A3C4F3; border-radius: 12px; border: 2px solid #000; transition: transform 0.3s ease;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌙</div>
+          <div style="font-weight: 600; font-size: 1.1rem;">Moon Shapes</div>
+          <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">What does it look like?</div>
         </div>
-        <div class="feature-preview">
-          <div style="font-size: 2.5rem;">⭐</div>
-          <div style="font-weight: 500; margin-top: 0.5rem;">Star Stories</div>
-          <div style="font-size: 0.85rem; opacity: 0.7;">Click 30+ celestial objects</div>
+        
+        <div style="padding: 1.5rem; background: #C8BFE7; border-radius: 12px; border: 2px solid #000; transition: transform 0.3s ease;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">⭐</div>
+          <div style="font-weight: 600; font-size: 1.1rem;">Star Stories</div>
+          <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">Click & learn!</div>
         </div>
-        <div class="feature-preview">
-          <div style="font-size: 2.5rem;">🎮</div>
-          <div style="font-weight: 500; margin-top: 0.5rem;">Learning Games</div>
-          <div style="font-size: 0.85rem; opacity: 0.7;">Catch auroras & learn!</div>
+        
+        <div style="padding: 1.5rem; background: #FFD6E8; border-radius: 12px; border: 2px solid #000; transition: transform 0.3s ease;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎮</div>
+          <div style="font-weight: 600; font-size: 1.1rem;">Fun Games</div>
+          <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">Play & learn!</div>
         </div>
       </div>
       
-      <p style="font-size: 1.1rem; margin-top: 2rem; opacity: 0.8;">
-        Ready to explore your sky?
+      <p style="font-size: 1.3rem; margin-top: 2.5rem; font-weight: 500;">
+        Ready to explore? 🚀
       </p>
       
-      <button class="onboarding-btn" onclick="window.finishOnboarding()">
+      <button class="onboarding-btn" onclick="window.finishOnboarding()" style="font-size: 1.3rem; padding: 1.5rem 3rem;">
         ✨ Show Me My Sky! →
       </button>
     </div>
@@ -169,16 +245,36 @@ function finishOnboarding() {
   const container = document.getElementById('onboardingContent');
   container.innerHTML = `
     <div class="onboarding-step" style="text-align: center; animation: fadeIn 0.5s ease-out;">
-      <h1 style="font-size: 5rem; margin-bottom: 1rem;">🌟</h1>
-      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Look up!</h2>
-      <p style="font-size: 1.5rem; opacity: 0.8;">SkyMirror looks back...</p>
+      <!-- Animated sky -->
+      <div style="width: 200px; height: 200px; margin: 0 auto 2rem; position: relative;">
+        <svg viewBox="0 0 200 200" style="width: 100%; height: 100%;">
+          <!-- Moon and stars -->
+          <circle cx="100" cy="80" r="40" fill="rgba(200,191,231,0.2)" stroke="#C8BFE7" stroke-width="3"/>
+          <circle cx="30" cy="40" r="3" fill="#F9A826"/>
+          <circle cx="170" cy="50" r="3" fill="#A3C4F3"/>
+          <circle cx="50" cy="140" r="3" fill="#B5EAD7"/>
+          <circle cx="160" cy="130" r="3" fill="#FFD6E8"/>
+          <circle cx="90" cy="30" r="2" fill="#F9A826"/>
+          <circle cx="120" cy="160" r="2" fill="#C8BFE7"/>
+          
+          <!-- Happy face on moon -->
+          <circle cx="90" cy="75" r="4" fill="#000"/>
+          <circle cx="110" cy="75" r="4" fill="#000"/>
+          <path d="M 85 90 Q 100 100 115 90" fill="none" stroke="#000" stroke-width="2.5"/>
+        </svg>
+      </div>
+      
+      <h1 style="font-size: 3.5rem; margin-bottom: 1rem; font-weight: 600; background: linear-gradient(135deg, #A3C4F3, #C8BFE7, #B5EAD7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        Look Up! ✨
+      </h1>
+      <p style="font-size: 1.8rem; opacity: 0.8; font-weight: 400;">SkyMirror looks back...</p>
     </div>
   `;
   
-  // Transition to main app after 2 seconds
+  // Transition to main app after 2.5 seconds
   setTimeout(() => {
     completeOnboarding();
-  }, 2000);
+  }, 2500);
 }
 
 // Initialize onboarding on page load

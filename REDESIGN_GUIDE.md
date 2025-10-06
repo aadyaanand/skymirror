@@ -253,7 +253,7 @@ npm run dev
 
 ### Open Browser
 ```
-http://localhost:3000
+http://localhost:8080
 ```
 
 ### Try These Features:

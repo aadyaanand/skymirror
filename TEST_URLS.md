@@ -1,20 +1,20 @@
 # 🧪 Test SkyMirror Apps
 
-Server is running on: **http://localhost:49467**
+Server is running on: **http://localhost:8080**
 
 ## ✅ URLs to Test:
 
 ### 1. Landing Page (Choose Your Experience)
 ```
-http://localhost:49467/
+http://localhost:8080/
 ```
 Shows two cards: Sky Explorer and Aurora Catcher Game
 
 ### 2. Sky Explorer App (Full Weather Dashboard)
 ```
-http://localhost:49467/app.html
+http://localhost:8080/app.html
 or
-http://localhost:49467/app
+http://localhost:8080/app
 ```
 Should show:
 - Current Scene (clickable stars)
@@ -31,9 +31,9 @@ Should show:
 
 ### 3. Aurora Catcher Game
 ```
-http://localhost:49467/game.html
+http://localhost:8080/game.html
 or
-http://localhost:49467/game
+http://localhost:8080/game
 ```
 Should show:
 - Main menu with 3 buttons (Play, Diary, Stories)
@@ -59,7 +59,7 @@ Should show:
 ```bash
 # From terminal, you should see:
 ps aux | grep serve
-# Should show: node ...serve -p 3001 -n
+# Should show: node ...serve -p 8080 -n
 ```
 
 ---
@@ -69,7 +69,7 @@ ps aux | grep serve
 - ✅ `app.html` (Sky Explorer - 10,939 bytes)
 - ✅ `game.html` (Aurora Catcher - 3,762 bytes)
 - ✅ All JavaScript files loading correctly
-- ✅ Server responding on port 49467
+- ✅ Server responding on port 8080
 
 **Status**: Everything is working! Try the URLs above with a hard refresh.
 

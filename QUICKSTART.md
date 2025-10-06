@@ -31,7 +31,7 @@ npm run dev
 
 Navigate to:
 ```
-http://localhost:3000
+http://localhost:8080
 ```
 
 ## Step 5: Allow Location Access (1 min)
@@ -89,7 +89,7 @@ You should now see:
 
 2. Open on mobile browser:
    ```
-   http://YOUR_IP:3000
+   http://YOUR_IP:8080
    ```
 
 3. Add to Home Screen for PWA experience

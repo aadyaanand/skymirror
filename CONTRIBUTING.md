@@ -76,7 +76,7 @@ npm install
 # Start dev server
 npm run dev
 
-# Open http://localhost:3000
+# Open http://localhost:8080
 ```
 
 ## Code Style Guidelines
